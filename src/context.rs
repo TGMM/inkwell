@@ -426,6 +426,11 @@ impl Context {
         unsafe { Context::new(LLVMContextCreate()) }
     }
 
+    /// Acquires the underlying raw pointer belonging to this `Context` type.
+    pub fn as_mut_ptr(&self) -> LLVMContextRef {
+        self.context.0
+    }
+
     /// Gets a `Mutex<Context>` which points to the global context singleton.
     /// This function is marked unsafe because another program within the same
     /// process could easily gain access to the same LLVM context pointer and bypass
